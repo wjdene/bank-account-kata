@@ -12,4 +12,7 @@ public interface AccountService {
     void withdraw(BigDecimal amount);
 
     List<Transaction> getStatement();
+
+    String printStatement();
+
 }

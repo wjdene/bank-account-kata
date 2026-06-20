@@ -4,6 +4,7 @@ import com.bank.dto.AmountRequest;
 import com.bank.model.Transaction;
 import com.bank.service.AccountService;
 import jakarta.validation.Valid;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,5 +32,11 @@ public class AccountController {
     @GetMapping("/statement")
     public List<Transaction> statement() {
         return accountService.getStatement();
+    }
+
+
+    @GetMapping(value = "/statement/print", produces = MediaType.TEXT_PLAIN_VALUE)
+    public String printStatement() {
+        return accountService.printStatement();
     }
 }

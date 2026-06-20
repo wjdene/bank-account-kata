@@ -48,4 +48,22 @@ class AccountServiceImplTest {
     {
         assertThrows(IllegalArgumentException.class, () -> service.deposit(BigDecimal.valueOf(-100)));
     }
+
+    @Test
+    void should_print_statement_with_header_and_operations() {
+        service.deposit(BigDecimal.valueOf(100));
+        service.withdraw(BigDecimal.valueOf(40));
+
+        String printed = service.printStatement();
+
+        assertTrue(printed.contains("DATE"));
+        assertTrue(printed.contains("OPERATION"));
+        assertTrue(printed.contains("AMOUNT"));
+        assertTrue(printed.contains("BALANCE"));
+        assertTrue(printed.contains("DEPOSIT"));
+        assertTrue(printed.contains("+100"));
+        assertTrue(printed.contains("WITHDRAWAL"));
+        assertTrue(printed.contains("-40"));
+        assertTrue(printed.contains("60"));
+    }
 }
